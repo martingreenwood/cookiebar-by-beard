@@ -26,6 +26,10 @@ This plugin adds a cookie bar to your website that actually complies with ICO st
 - `cbbb_cookie`, this is for 30 days and only set upon clicking save / accept all. This is functional/necessary.
 - ``
 
+= Whats the shortcode for the settings? =
+
+`[cbbbcookies]` add this to your cookies page and it will give you the ability to control the cookies you set
+
 = Do you have a shortcode? =
 
 No, it will display automatically in the footer of your website.

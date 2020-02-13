@@ -1,8 +1,10 @@
 <?php
-if( !defined( 'ABSPATH' ) ) {
+if( !defined( 'ABSPATH' ) )
+{
 	exit;
 }
 
+// Register settings blocka
 register_setting(
     'cbbb_option_group',							// option_group
     'cbbb_option_name',								// option_name
@@ -16,9 +18,7 @@ add_settings_section(
     'cbbb-admin'									// page
 );
 
-/*
- * Plugin Fields
- */
+// Register settings fields
 add_settings_field(
 	'cbbb_title',									// id
 	'Cookiebar Title',								// title
@@ -39,6 +39,14 @@ add_settings_field(
 	'cbbb_cookiepage',								// id
 	'Cookie Page',									// title
 	array( $this, 'cbbb_cookiepage_cb' ),			// callback
+	'cbbb-admin',									// page
+	'cbbb_setting_section'							// section
+);
+
+add_settings_field(
+	'cbbb_cookiebar_time',						// id
+	'Cookiebar Length',								// title
+	array( $this, 'cbbb_cookiebartime_cb' ),			// callback
 	'cbbb-admin',									// page
 	'cbbb_setting_section'							// section
 );

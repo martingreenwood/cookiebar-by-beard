@@ -3,7 +3,9 @@ if( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$this->cbbb = get_option( 'cbbb_option_name' ); ?>
+$this->cbbb = get_option( 'cbbb_option_name' );
+
+?>
 
 <style> .indent {padding-left: 2em} </style>
 
