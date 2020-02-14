@@ -17,6 +17,115 @@
 		"oAP": "/.gitattributes",
 		"oF": 0
 		},
+	"/assets/banner-1544x500.jpg": {
+		"ft": 16384,
+		"iS": 196724,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/banner-1544x500.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/banner-772x250.jpg": {
+		"ft": 16384,
+		"iS": 66090,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/banner-772x250.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/icon-128x128.jpg": {
+		"ft": 16384,
+		"iS": 6053,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/icon-128x128.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/icon-256x256.jpg": {
+		"ft": 16384,
+		"iS": 9632,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/icon-256x256.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/icon.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/assets/icon.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 52780316221407,
+		"prP": 0
+		},
+	"/assets/screenshot-1.jpg": {
+		"ft": 16384,
+		"iS": 592826,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/screenshot-1.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/screenshot-2.jpg": {
+		"ft": 16384,
+		"iS": 274290,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/screenshot-2.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/screenshot-3.jpg": {
+		"ft": 16384,
+		"iS": 287213,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/screenshot-3.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/screenshot-4.jpg": {
+		"ft": 16384,
+		"iS": 257753,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/screenshot-4.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
+	"/assets/screenshot-5.jpg": {
+		"ft": 16384,
+		"iS": 353168,
+		"jF": 0,
+		"oA": 0,
+		"oAP": "/assets/screenshot-5.jpg",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"q": 100
+		},
 	"/cookiebar-by-beard.php": {
 		"cB": 0,
 		"ft": 8192,
@@ -48,26 +157,13 @@
 		"oS": 3,
 		"uL": 1
 		},
-	"/images/cookie.svg": {
-		"ft": 2097152,
-		"miP": 0,
-		"oA": 2,
-		"oAP": "/images/cookie.svg",
-		"oF": 0,
-		"opt": 0,
-		"plM": 52780316221407,
-		"prP": 0
-		},
-	"/images/cookies.png": {
-		"ft": 32768,
-		"iS": 753,
+	"/gpl-2.0.txt": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
 		"oA": 0,
-		"oAP": "/images/cookies.png",
-		"oF": 0,
-		"oIPL": 0,
-		"opt": 0,
-		"oT": 1,
-		"q": 100
+		"oAP": "/gpl-2.0.txt",
+		"oF": 0
 		},
 	"/includes/get-options.php": {
 		"cB": 0,
@@ -75,6 +171,14 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/includes/get-options.php",
+		"oF": 0
+		},
+	"/includes/plugin-functions.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 0,
+		"oAP": "/includes/plugin-functions.php",
 		"oF": 0
 		},
 	"/includes/settings.php": {
@@ -85,16 +189,13 @@
 		"oAP": "/includes/settings.php",
 		"oF": 0
 		},
-	"/js/cbbb.js": {
-		"bF": 0,
-		"ft": 64,
-		"ma": 0,
-		"mi": 1,
+	"/includes/shortcode.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
 		"oA": 0,
-		"oAP": "/js/cbbb-min.js",
-		"oF": 0,
-		"sC": 3,
-		"tS": 0
+		"oAP": "/includes/shortcode.php",
+		"oF": 0
 		},
 	"/js/js.cookie.min.js": {
 		"bF": 0,

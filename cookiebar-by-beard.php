@@ -8,6 +8,25 @@
  * Author URI:  http://wearebeard.com
  * Domain Path: /languages
  * Text Domain: cbbb
+ * License:      GPL2
+ * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+
+ **************************************************************************
+
+ Cookiebar by Beard is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ any later version.
+
+ Cookiebar by Beard is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Cookiebar by Beard. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
+
+ **************************************************************************
  */
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
@@ -194,328 +213,47 @@ class WAB_Cookiebar {
 		if ( isset( $input['cbbb_intro'] ) ) {
 			$sanitary_values['cbbb_intro'] = sanitize_text_field( $input['cbbb_intro'] );
 		}
+		if ( isset( $input['cbbb_cookiebar_time'] ) ) {
+			$sanitary_values['cbbb_cookiebar_time'] = sanitize_text_field( $input['cbbb_cookiebar_time'] );
+		}
+		if ( isset( $input['cbbb_cookiepage'] ) ) {
+			$sanitary_values['cbbb_cookiepage'] = sanitize_text_field( $input['cbbb_cookiepage'] );
+		}
 
 		return $sanitary_values;
 	}
 }
 add_action( 'wp_footer', array( 'WAB_Cookiebar', 'display_cookiebar_by_beard' ), 99, 0 );
 
-function cbbbcookies()
-{
-	$cbbb_options = get_option( 'cbbb_option_name' );
-	$cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
-	?>
-	<div class="cbbb-cookie-wrap">
-		<div class="cbbb-cookie-box">
-			<div class="cbbb-cookie-options">
-
-				<div class="cbbb-cookie-header">
-					<div class="cbbb-cookie-header-title">
-						<h3>You have the control.</h3>
-						<p>You have activated/deactivated the following cookie categories.</p>
-					</div>
-				</div>
-
-				<div class="cbbb-cookie-necessary">
-					<div class="cbbb-cookie-necessary-title">
-						<h3>Necessary cookies</h3>
-						<p>Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions</p>
-					</div>
-				</div>
-
-				<div class="cbbb-cookie-controls">
-				<?php
-					$cbbb_cpt_args = array(
-						'post_type' 		=> 'cbbb_cookie',
-						'posts_per_page' 	=> -1,
-					);
-					$loop = new WP_Query($cbbb_cpt_args);
-
-					if ($loop->have_posts()):
-						while ($loop->have_posts()) : $loop->the_post();
-							$cbbb_script = get_post_meta(get_the_id(), '_cbbb_script_meta_key', true);
-							$cbbb_script_location = get_post_meta(get_the_id(), '_cbbb_script_location_meta_key', true);
-							$cookie_title = get_the_title();
-							$cookie_content = get_the_content();
-							$cookie_name = str_replace(" ","", strtolower($cookie_title));
-							?>
-							<div class="cbbb-cookie-control">
-								<div class="cbbb-cookie-control-title">
-									<h3><?php echo $cookie_title; ?></h3>
-									<?php echo $cookie_content; ?>
-								</div>
-								<div Class="cbbb-cookie-control-toggle">
-									<div class="onoffswitch">
-
-										<input type="checkbox" name="<?php echo $cookie_name ?>" class="cbbb-cookie-checkbox" id="<?php echo $cookie_name; ?>" <?php if (isset($_COOKIE[$cookie_name])): ?>checked<?php endif; ?>>
-
-									</div>
-								</div>
-							</div>
-							<?php
-						endwhile;
-					else:
-						// no cookie things to set.
-					endif;
-					wp_reset_query();
-				?>
-				<div class="cbbb-cookie-save">
-					<button type="button" data-cookie-time="<?php echo $cbbb_cookiebar_time; ?>" name="cbbb-save">Save Settings</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php
-}
-add_shortcode( 'cbbbcookies', 'cbbbcookies' );
-
-
-
-// Create custom post type
-// -----------------------
-
-function cbbb_cpt()
-{
-	register_post_type('cbbb_cookie', array(
-		'labels' => array(
-			'name' => __('Cookie Scripts', 'cbbb'),
-			'singular_name' => __('Cookie Script')
-		),
-		'description' => __('Add your third party cookie scripts here, such as analytics, live chats, tracking cookies etc.'),
-		'public' => true,
-		'exclude_from_search' => true,
-		'publicly_queryable' => false,
-		'show_ui' => true,
-		'show_in_nav_menus' => true,
-		'show_in_rest' => true,
-		'hierarchical' => false,
-		'supports' => array(
-			'title',
-			'editor',
-			'excerpt',
-			'page-attributes',
-			'custom-fields'
-		),
-		'menu_icon' =>  'dashicons-marker',
-	));
-}
-add_action( 'init', 'cbbb_cpt', 10, 0 );
-
-// Default content for the cookie piosts
-// Really just to hint what they need to add
-// -----------------------------------------
-
-function add_default_content( $content )
-{
-	global $post_type;
-	switch ( $post_type ) {
-		case 'cbbb_cookie':
-			$content = "<p>Enter information about the script here. Mayne include the cookies it creates and what they are used for. Remember that the cookies used for content will be 'post-name'-consent.</p>";
-			break;
-	}
-	return $content;
-}
-add_filter( 'default_content', 'add_default_content' );
-
-// Meta box setup function
-// --------------------------
-
-function cbbb_add_custom_box()
-{
-	$screens = ['cbbb_cookie'];
-	foreach ($screens as $screen) {
-		add_meta_box(
-			'wporg_box_id',				// Unique ID
-			'Cookie Script',			// Box title
-			'cbbb_custom_box_html',	// Content callback, must be of type callable
-			$screen						// Post type
-		);
-	}
-}
-add_action('add_meta_boxes', 'cbbb_add_custom_box');
-
-// Used by the cbbb_add_custom_box() function
-// Adds the html field to save the script.
-function cbbb_custom_box_html($post)
-{
-	$cbbb_script = get_post_meta($post->ID, '_cbbb_script_meta_key', true);
-	$cbbb_script_location = get_post_meta($post->ID, '_cbbb_script_location_meta_key', true);
-	?>
-	<h4>Where should this go?</h4>
-	<label class="screen-reader-text" for="cbbb_sctipt_location_field">Select a location</label>
-    <select name="cbbb_sctipt_location_field" id="cbbb_sctipt_location_field" style="width:50%" class="components-select-control__input">
-        <option value="">Select one....</option>
-        <option value="wp_head" <?php selected($cbbb_script_location, 'wp_head'); ?>>Header</option>
-        <option value="wp_footer" <?php selected($cbbb_script_location, 'wp_footer'); ?>>Footer</option>
-    </select>
-	<h4>Add your custom code / script here. This should be a peice of code (javascript) you wanrt to run on the front end after gaining thr visitors consent.</h4>
-	<label class="screen-reader-text" for="cbbb_script_field">Cusatom tracking / code</label>
-	<textarea name="cbbb_script_field" class="components-textarea-control__input" id="cbbb_script_field" rows="8" style="width:100%"><?php echo $cbbb_script; ?></textarea>
-	<?php
-}
-
-// Save the Meta information
-// -------------------------
-
-function cbbb_save_postdata($post_id)
-{
-	// script
-	if (array_key_exists('cbbb_script_field', $_POST)) {
-		update_post_meta(
-			$post_id,
-			'_cbbb_script_meta_key',
-			$_POST['cbbb_script_field']
-		);
-	}
-	// location§
-	if (array_key_exists('cbbb_sctipt_location_field', $_POST)) {
-		update_post_meta(
-			$post_id,
-			'_cbbb_script_location_meta_key',
-			$_POST['cbbb_sctipt_location_field']
-		);
-	}
-}
-add_action('save_post', 'cbbb_save_postdata');
-
-
 // Enqueue Styles / Scripts
 // ------------------------
 
 function cbbb_enqueue_base() {
-	// register scripts
-	wp_register_script( 'cbbb-js',  plugin_dir_url(__FILE__) . '/js/cbbb.js','','', true );
+
 	wp_register_script( 'cbbb-jscookie',  plugin_dir_url(__FILE__) . '/js/js.cookie.min.js','','', true );
 	wp_register_style( 'cbbb-css', plugin_dir_url(__FILE__) . '/css/cbbb.css','','', 'screen' );
-
-	// enqueue scripts
 	wp_enqueue_style( 'cbbb-css' );
-
 	// Included jQuery check incase it has not already been added.
 	if(!wp_script_is('jquery')) {
 		wp_enqueue_script( 'jquery' );
 	}
-
 	wp_enqueue_script( 'cbbb-jscookie' );
-	wp_enqueue_script( 'cbbb-js' );
 }
 
 if (!is_admin()) {
 	add_action( 'wp_enqueue_scripts', 'cbbb_enqueue_base', 90 );
 }
 
-function cbbb_cookie_inline_js() {
-?>
-<script>
-<?php
-$cbbb_options = get_option( 'cbbb_option_name' );
-$cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
-?>
-(function($) {
-	$('.cbbb-cookie-check .actions button').on("click", function() {
-		Cookies.set('cbbb_cookie', 'closed', { expires: <?php echo $cbbb_cookiebar_time; ?> });
-		<?php
-		$cbbb_cpt_args = array(
-			'post_type' 		=> 'cbbb_cookie',
-			'posts_per_page' 	=> -1,
-		);
-		$loop = new WP_Query($cbbb_cpt_args);
-		if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
-		$cookie_title = get_the_title();
-		$cookie_name = str_replace(" ","", strtolower($cookie_title));
-		?>
-		Cookies.set('<?php echo $cookie_name; ?>', 'agreed', { expires: <?php echo $cbbb_cookiebar_time ?> });
-		<?php
-		endwhile;
-		else:
-		endif;
-		wp_reset_query();
-		?>
+// defines the shortcode for the cookie panel
+// ------------------------------------------
 
-		$(".cbbb-cookie-check").toggleClass('closed');
-		$(".cbbb-cookie-icon").toggleClass('show');
+include plugin_dir_path( __FILE__ ) . '/includes/shortcode.php';
 
-	});
-	$('.cbbb-cookie-icon').on("click", function() {
-		$(".cbbb-cookie-check").toggleClass('closed');
-		$(".cbbb-cookie-icon").toggleClass('show');
-	});
-	$('.cbbb-cookie-save button').on("click", function() {
-		<?php
-		$cbbb_cpt_args = array(
-			'post_type' 		=> 'cbbb_cookie',
-			'posts_per_page' 	=> -1,
-		);
-		$loop = new WP_Query($cbbb_cpt_args);
-		if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
-		$cookie_title = get_the_title();
-		$cookie_name = str_replace(" ","", strtolower($cookie_title));
-		?>
-		if($('#<?php echo $cookie_name; ?>').prop('checked') == true){
-			Cookies.set('<?php echo $cookie_name; ?>', 'agreed', { expires: <?php echo $cbbb_cookiebar_time ?> });
-		} else {
-			Cookies.remove('<?php echo $cookie_name; ?>');
-		}
-		<?php
-		endwhile;
-		else:
-		endif;
-		wp_reset_query();
-		?>
-		location.reload();
-	});
-})(jQuery);
-</script>
-<?php
-}
-add_action( 'wp_footer', 'cbbb_cookie_inline_js', 99, 0 );
+// defines the base functrions for the cookie panel
+// ------------------------------------------------
 
+include plugin_dir_path( __FILE__ ) . '/includes/plugin-functions.php';
 
-function cbbb_head_scripts()
-{
-	$cbbb_cpt_args = array(
-		'post_type' 		=> 'cbbb_cookie',
-		'posts_per_page' 	=> -1,
-		'meta_query' 		=> array(
-			array(
-				'key'     => '_cbbb_script_location_meta_key',
-				'value'   => 'wp_head',
-				'compare' => '=',
-			),
-		),
-	);
-	$loop = new WP_Query($cbbb_cpt_args);
-	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
-	echo "<!-- added by Cookiebar by Beard -->";
-	echo get_post_meta(get_the_id(), '_cbbb_script_meta_key', true);
-	echo "<!-- // end cookiebar script -->";
-	endwhile;
-	endif;
-	wp_reset_query();
-}
-add_action( 'wp_head', 'cbbb_head_scripts', 99, 0 );
-
-function cbbb_footer_scripts()
-{
-	$cbbb_cpt_args = array(
-		'post_type' 		=> 'cbbb_cookie',
-		'posts_per_page' 	=> -1,
-		'meta_query' 		=> array(
-			array(
-				'key'     => '_cbbb_script_location_meta_key',
-				'value'   => 'wp_footer',
-				'compare' => '=',
-			),
-		),
-	);
-	$loop = new WP_Query($cbbb_cpt_args);
-	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
-	echo get_post_meta(get_the_id(), '_cbbb_script_meta_key');
-	endwhile;
-	endif;
-	wp_reset_query();
-}
-add_action( 'wp_footer', 'cbbb_footer_scripts', 99, 0 );
 
 WAB_Cookiebar::get_instance();
 

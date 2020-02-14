@@ -81,14 +81,11 @@ $input-light-dims: $input-height / 2.5
 			flex-flow: wrap
 			justify-content: space-between
 			flex: 0 0 100%
-
-			// &:before,
-			// &:after
-			// 	content: ''
-			// 	display: block
+			align-items: center
 
 			a
 				text-decoration: none
+				font-size: 75%
 				font-weight: bold
 				color: black
 
@@ -96,11 +93,18 @@ $input-light-dims: $input-height / 2.5
 				line-height: 1
 				padding: 10px 20px 10px 20px
 				font-size: 2rem
+				margin-top: 30px
+
+				@media (min-width:768px )
+					margin-top: 0
 
 .cbbb-cookie-wrap
 	background: #f9f9f9
 	padding: 30px
 	box-sizing: border-box
+
+	@media (min-width:768px )
+		padding: 30px
 
 	.cbbb-cookie-box
 
@@ -127,9 +131,11 @@ $input-light-dims: $input-height / 2.5
 				flex-flow: wrap row
 
 				.cbbb-cookie-header-title
-					flex: 0 0 80%
-					padding-right: 60px
 					box-sizing: border-box
+
+					@media (min-width:768px )
+						flex: 0 0 80%
+						padding-right: 60px
 
 					h3
 						margin: 0 0 10px
@@ -147,9 +153,11 @@ $input-light-dims: $input-height / 2.5
 				border-bottom: 1px solid #ccc
 
 				.cbbb-cookie-header-title
-					flex: 0 0 80%
-					padding-right: 60px
 					box-sizing: border-box
+
+					@media (min-width:768px )
+						flex: 0 0 80%
+						padding-right: 60px
 
 					h3
 						margin: 0 0 10px
@@ -173,9 +181,11 @@ $input-light-dims: $input-height / 2.5
 						border-bottom: 0
 
 					.cbbb-cookie-control-title
-						flex: 0 0 80%
-						padding-right: 60px
 						box-sizing: border-box
+
+						@media (min-width:768px )
+							flex: 0 0 80%
+							padding-right: 60px
 
 						h3
 							margin: 0 0 10px
@@ -184,7 +194,11 @@ $input-light-dims: $input-height / 2.5
 							margin-bottom: 0
 
 					.cbbb-cookie-control-toggle
-						flex: 0 0 20%
+						margin-top: 30px
+
+						@media (min-width:768px )
+							margin-top: 0
+							flex: 0 0 20%
 
 						.cbbb-cookie-checkbox
 							position: relative
