@@ -57,7 +57,7 @@ class WAB_Cookiebar {
 		function add_action_links ( $link )
 		{
 			$cbbb_links = array(
-				'<a href="' . admin_url( 'options-general.php?page=cookiebar-by-beard' ) . '">Cookiebar Settings</a>',
+				'<a href="' . admin_url( 'options-general.php?page=cookiebar-by-beard' ) . '">Settings</a>',
 			);
 			return array_merge( $link, $cbbb_links );
 		}

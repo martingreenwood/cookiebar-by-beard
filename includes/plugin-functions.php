@@ -197,7 +197,6 @@ function cbbb_head_scripts()
 	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
 	echo "<!-- added by Cookiebar by Beard -->";
 	echo htmlspecialchars_decode( get_post_meta(get_the_id(), '_cbbb_script_meta_key', true) );
-	// echo esc_html();
 	echo "<!-- // end cookiebar script -->";
 	endwhile;
 	endif;
@@ -220,24 +219,11 @@ function cbbb_footer_scripts()
 	);
 	$loop = new WP_Query($cbbb_cpt_args);
 	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
+	echo "<!-- added by Cookiebar by Beard -->";
 	echo htmlspecialchars_decode( get_post_meta(get_the_id(), '_cbbb_script_meta_key', true) );
+	echo "<!-- // end cookiebar script -->";
 	endwhile;
 	endif;
 	wp_reset_query();
 }
 add_action( 'wp_footer', 'cbbb_footer_scripts', 99, 0 );
-
-
-// Adds plugin action links
-// -------------------------
-
-function cbbb_plugin_action_links( $links ) {
-
-	$links = array_merge( array(
-		'<a href="' . esc_url( admin_url( '/options-general.php' ) ) . '">' . __( 'Settings', 'cbbb' ) . '</a>'
-	), $links );
-
-	return $links;
-
-}
-add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'cbbb_plugin_action_links' );
