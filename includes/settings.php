@@ -22,6 +22,9 @@ $this->cbbb = get_option( 'cbbb_option_name' );
 				<li>
 					<h3>General Settings</h3>
 					<p>General settings for the cookie bar.</p>
+					<p>
+						Make sure you add the shortcode '[cbbbcookies]' to your cookie page or add '&lt;?php echo do_shortcode['[cbbbcookies]'] ;?&gt;' to your cookie page template.
+					</p>
 					<?php
 					do_settings_sections( 'cbbb-admin' );
 					?>

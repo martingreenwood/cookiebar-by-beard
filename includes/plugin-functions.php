@@ -195,9 +195,13 @@ function cbbb_head_scripts()
 	);
 	$loop = new WP_Query($cbbb_cpt_args);
 	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
+	$cookie_title = get_the_title();
+	$cookie_name = str_replace(" ","", strtolower($cookie_title));
+	if ( isset($_COOKIE['$cookie_name']) ):
 	echo "<!-- added by Cookiebar by Beard -->";
 	echo htmlspecialchars_decode( get_post_meta(get_the_id(), '_cbbb_script_meta_key', true) );
 	echo "<!-- // end cookiebar script -->";
+	endif;
 	endwhile;
 	endif;
 	wp_reset_query();
@@ -219,9 +223,13 @@ function cbbb_footer_scripts()
 	);
 	$loop = new WP_Query($cbbb_cpt_args);
 	if ($loop->have_posts()): while ($loop->have_posts()) : $loop->the_post();
+	$cookie_title = get_the_title();
+	$cookie_name = str_replace(" ","", strtolower($cookie_title));
+	if ( isset($_COOKIE['$cookie_name']) ):
 	echo "<!-- added by Cookiebar by Beard -->";
 	echo htmlspecialchars_decode( get_post_meta(get_the_id(), '_cbbb_script_meta_key', true) );
 	echo "<!-- // end cookiebar script -->";
+	endif;
 	endwhile;
 	endif;
 	wp_reset_query();

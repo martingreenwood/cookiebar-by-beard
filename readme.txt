@@ -3,11 +3,11 @@ Contributors: beardeddev
 Tags: cookiebar, cookies, cookies, gdpr, opt-in
 Requires at least: 4.3
 Tested up to: 5.3.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin adds a cookie bar to your website that actually complies with ICO standards.
+This plugin adds a cookie bar to your website that gives your visitors better control.
 
 == Description ==
 
@@ -45,6 +45,11 @@ No, it will display automatically in the footer of your website.
 5. The custom bar custom post type information
 
 == Changelog ==
+
+= 1.0.1
+Bug fix for cookie scripts showing regardless of choice.
+Added shortcode reference to settings page
+
 
 = 1.0.0
 initial development

@@ -3,7 +3,7 @@
  * Plugin Name: Cookiebar by Beard
  * Plugin URI:  https://wearebeard.com/cookiebar
  * Description: Cookiebar by beard is aplugin developed to give your visitord control over the cookies you set.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Martin Greenwood
  * Author URI:  http://wearebeard.com
  * Domain Path: /languages
