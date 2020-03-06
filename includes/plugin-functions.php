@@ -139,13 +139,13 @@ $cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
 		wp_reset_query();
 		?>
 
-		$(".cbbb-cookie-check").toggleClass('closed');
-		$(".cbbb-cookie-icon").toggleClass('show');
+		$(".cbbb-cookie-check").addClass('closed');
+		$(".cbbb-cookie-icon").addClass('show');
 
 	});
 	$('.cbbb-cookie-icon').on("click", function() {
-		$(".cbbb-cookie-check").toggleClass('closed');
-		$(".cbbb-cookie-icon").toggleClass('show');
+		$(".cbbb-cookie-check").removeClass('closed');
+		$(".cbbb-cookie-icon").removeClass('show');
 	});
 	$('.cbbb-cookie-save button').on("click", function() {
 		<?php
