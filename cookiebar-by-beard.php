@@ -3,7 +3,7 @@
  * Plugin Name: Cookiebar by Beard
  * Plugin URI:  https://wearebeard.com/cookiebar
  * Description: Cookiebar by beard is aplugin developed to give your visitord control over the cookies you set.
- * Version:     1.0.1
+ * Version:     1.0.4
  * Author:      Martin Greenwood
  * Author URI:  http://wearebeard.com
  * Domain Path: /languages
@@ -157,9 +157,6 @@ class WAB_Cookiebar {
 		$cbbb_cookiepage = $cbbb_options['cbbb_cookiepage'];
 		$cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
 		?>
-		<div class="cbbb-cookie-icon <?php if( isset($_COOKIE['cbbb_cookie']) || !is_page($cbbb_cookiepage) ): ?>show<?php endif; ?>">
-			Cookies
-		</div>
 		<?php if (!is_page($cbbb_cookiepage)): ?>
 		<div class="cbbb-cookie-check <?php if( isset($_COOKIE['cbbb_cookie']) || is_page($cbbb_cookiepage) ): ?>closed<?php endif; ?>">
 
@@ -186,8 +183,13 @@ class WAB_Cookiebar {
 						</div>
 
 						<div class="actions">
-							<a class="more" href="<?php echo get_permalink( $cbbb_cookiepage ); ?>">Find out more including how to reject cookies</a>
-							<button type="button" name="consent">Accept All</button>
+							<div class="half">
+								<a class="more" href="<?php echo get_permalink( $cbbb_cookiepage ); ?>">Find out more including how to manage cookies</a>
+							</div>
+							<div class="half">
+								<button type="button" class="outline" name="reject">Reject All</button>
+								<button type="button" name="consent">Accept All</button>
+							</div>
 						</div>
 					</div>
 

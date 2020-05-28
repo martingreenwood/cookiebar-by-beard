@@ -119,7 +119,7 @@ $cbbb_options = get_option( 'cbbb_option_name' );
 $cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
 ?>
 (function($) {
-	$('.cbbb-cookie-check .actions button').on("click", function() {
+	$('.cbbb-cookie-check .actions button[name="consent"]').on("click", function() {
 		Cookies.set('cbbb_cookie', 'closed', { expires: <?php echo $cbbb_cookiebar_time; ?> });
 		<?php
 		$cbbb_cpt_args = array(
@@ -140,12 +140,11 @@ $cbbb_cookiebar_time = $cbbb_options['cbbb_cookiebar_time'];
 		?>
 
 		$(".cbbb-cookie-check").addClass('closed');
-		$(".cbbb-cookie-icon").addClass('show');
 
 	});
-	$('.cbbb-cookie-icon').on("click", function() {
-		$(".cbbb-cookie-check").removeClass('closed');
-		$(".cbbb-cookie-icon").removeClass('show');
+	$('.cbbb-cookie-check .actions button[name="reject"]').on("click", function() {
+		Cookies.set('cbbb_cookie', 'closed', { expires: 1 });
+		$(".cbbb-cookie-check").addClass('closed');
 	});
 	$('.cbbb-cookie-save button').on("click", function() {
 		<?php
